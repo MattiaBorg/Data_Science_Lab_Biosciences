@@ -9,10 +9,10 @@ This project builds a multimodal deep learning model to classify breast ultrasou
 ## What we did
 
 **1. Dataset audit**
-The provided dataset linked ultrasound images (BUSI) to clinical data (METABRIC). Before building anything, we verified statistically that this linkage is artificial: patients labelled *normal* carry invasive carcinoma diagnoses with average tumour sizes of 27 mm. We therefore do not use the clinical CSV files as model input.
+The provided dataset links ultrasound images to clinical and molecular CSV files. Before building any model, we verified statistically that this linkage is artificial: patients labelled *normal* carry invasive carcinoma diagnoses with average tumour sizes of 27 mm. We therefore do not use the CSV files as model input.
 
 **2. CNN on raw images**
-We fine-tuned EfficientNet-B0 (pre-trained on ImageNet) on the ultrasound images. First 7 of 9 convolutional blocks are frozen to prevent overfitting on a small dataset.
+We fine-tuned EfficientNet-B0 (pre-trained on ImageNet) on the ultrasound images. The first 7 of 9 convolutional blocks are frozen to prevent overfitting on a small dataset.
 
 **3. Feature extraction**
 We extract 11 quantitative features from each raw image: 7 intensity statistics (mean, std, skewness, kurtosis, percentiles, dynamic range) and 4 GLCM texture descriptors (contrast, correlation, energy, homogeneity). No segmentation mask is used.
@@ -54,12 +54,11 @@ Grad-CAM shows which image regions the CNN focuses on. SHAP quantifies the contr
 
 ## Dataset
 
-Download separately — not included in this repository.
+Download from Kaggle — not included in this repository.
 
-- **BUSI**: [Kaggle](https://www.kaggle.com/datasets/aryashah2k/breast-ultrasound-images-dataset)
-- **METABRIC**: [cBioPortal](https://www.cbioportal.org/study/summary?id=brca_metabric)
+[Multi-Modal Breast Cancer Dataset](https://www.kaggle.com/datasets/ajithdari/multi-modal-breast-cancer-dataset)
 
-Place BUSI images in `dataset/dataset1/` and the CSV files in `dataset/dataset2/` and `dataset/dataset3/`.
+Place the images in `dataset/dataset1/` and the CSV files in `dataset/dataset2/` and `dataset/dataset3/`.
 
 ---
 
